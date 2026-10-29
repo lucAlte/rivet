@@ -566,7 +566,7 @@ function renderAuth() {
   }
   return `<div class="auth">
     <aside class="auth-side">
-      <div class="brand-row light">${logo()}</div>
+      <a class="brand-row light" href="index.html" style="text-decoration:none" aria-label="Retour au site Rivet">${logo()}</a>
       <div class="auth-pitch">
         <h1>Vos interventions, du bureau jusque chez le client.</h1>
         <ul class="pitch-list">
@@ -578,7 +578,7 @@ function renderAuth() {
       </div>
       <div class="trade-chips">${Object.values(TRADES).slice(0, 6).map((t) => `<span>${esc(t.label)}</span>`).join('')}</div>
     </aside>
-    <main class="auth-main"><div class="auth-card">${body}</div><p class="auth-foot">Rivet · gestion d'interventions pour artisans et techniciens · <a href="presentation.html">Découvrir Rivet</a></p></main>
+    <main class="auth-main"><div class="auth-card">${body}</div><p class="auth-foot">Rivet · gestion d'interventions pour artisans et techniciens · <a href="index.html">Découvrir Rivet</a></p></main>
   </div>`;
 }
 

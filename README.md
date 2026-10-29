@@ -16,7 +16,8 @@ Site 100 % statique (HTML, CSS, JavaScript) hébergé sur GitHub Pages. Les donn
 
 | Fichier | Rôle |
 |---|---|
-| `index.html` | Page unique de l'application |
+| `index.html` | Site de présentation (page d'accueil) |
+| `app.html` | Application : connexion, création de compte, espace de travail |
 | `styles.css` | Styles (thème clair et sombre automatique) |
 | `app.js` | Interface : connexion, tableaux, Ma journée, fiches, administration |
 | `api.js` | Accès aux données Supabase |
@@ -51,7 +52,7 @@ Site 100 % statique (HTML, CSS, JavaScript) hébergé sur GitHub Pages. Les donn
 ### 4. Régler l'authentification dans Supabase
 
 1. **Authentication → URL Configuration**
-   - *Site URL* : l'adresse GitHub Pages, par exemple `https://ton-pseudo.github.io/rivet/`
+   - *Site URL* : l'adresse de l'application, par exemple `https://ton-pseudo.github.io/rivet/app.html`
    - *Redirect URLs* : ajoute `https://ton-pseudo.github.io/rivet/**`
 2. **Authentication → Emails → Templates**
    - *Magic Link* : sujet « Vous êtes invité sur Rivet », corps = contenu de `email-invitation.html`
@@ -69,7 +70,7 @@ En attendant, chaque invitation propose **Copier le lien** dans *Paramètres →
 
 ### 6. Tester
 
-1. Ouvre le site, clique **Créer mon entreprise** et remplis le formulaire. Une instance est créée avec un premier tableau « Dépannages » et trois interventions d'exemple.
+1. Ouvre le site, clique **Essayer gratuitement** puis remplis le formulaire et remplis le formulaire. Une instance est créée avec un premier tableau « Dépannages » et trois interventions d'exemple.
 2. Dans **Paramètres → Équipe**, invite une deuxième adresse e-mail.
 3. Ouvre le lien d'invitation dans une fenêtre privée, crée le compte, puis donne-lui des accès dans **Paramètres → Accès**.
 
