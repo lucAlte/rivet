@@ -1,0 +1,18 @@
+<!-- Modèle Supabase « Magic Link » (Authentication → Emails → Templates → Magic Link)
+     Sujet conseillé : Vous êtes invité sur Rivet
+     Ce modèle sert aux invitations envoyées depuis Paramètres → Équipe. -->
+<div style="font-family:Arial,Helvetica,sans-serif;background:#F4F6FA;padding:32px 16px">
+  <div style="max-width:480px;margin:0 auto;background:#ffffff;border-radius:14px;padding:32px;border:1px solid #E3E7EF">
+    <div style="width:40px;height:40px;border-radius:10px;background:#2D5BE3;color:#fff;font-weight:bold;font-size:20px;line-height:40px;text-align:center">R</div>
+    <h1 style="font-size:22px;color:#17203B;margin:20px 0 8px">Votre équipe vous attend sur Rivet</h1>
+    <p style="font-size:15px;line-height:1.5;color:#4A5470;margin:0 0 24px">
+      Vous avez été invité à rejoindre une entreprise sur Rivet, l'outil de suivi des interventions.
+      Cliquez sur le bouton pour créer votre compte et accéder au planning de l'équipe.
+    </p>
+    <a href="{{ .ConfirmationURL }}" style="display:inline-block;background:#2D5BE3;color:#ffffff;text-decoration:none;font-weight:bold;font-size:15px;padding:13px 22px;border-radius:9px">Rejoindre mon équipe</a>
+    <p style="font-size:13px;line-height:1.5;color:#7F89A3;margin:24px 0 0">
+      Vous avez déjà un compte ? Le même bouton ajoute simplement cette entreprise à vos instances.<br>
+      Si vous n'attendiez pas cette invitation, ignorez cet e-mail.
+    </p>
+  </div>
+</div>

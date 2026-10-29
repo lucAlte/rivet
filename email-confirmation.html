@@ -1,0 +1,16 @@
+<!-- Modèle Supabase « Confirm signup » (Authentication → Emails → Templates → Confirm signup)
+     Sujet conseillé : Activez votre compte Rivet
+     Supabase peut aussi utiliser ce modèle pour une invitation envoyée à une adresse sans compte :
+     le texte reste donc valable dans les deux cas. -->
+<div style="font-family:Arial,Helvetica,sans-serif;background:#F4F6FA;padding:32px 16px">
+  <div style="max-width:480px;margin:0 auto;background:#ffffff;border-radius:14px;padding:32px;border:1px solid #E3E7EF">
+    <div style="width:40px;height:40px;border-radius:10px;background:#2D5BE3;color:#fff;font-weight:bold;font-size:20px;line-height:40px;text-align:center">R</div>
+    <h1 style="font-size:22px;color:#17203B;margin:20px 0 8px">Activez votre compte Rivet</h1>
+    <p style="font-size:15px;line-height:1.5;color:#4A5470;margin:0 0 24px">
+      Vous venez de créer un compte ou d'être invité par votre entreprise.
+      Confirmez votre adresse pour ouvrir votre espace de travail.
+    </p>
+    <a href="{{ .ConfirmationURL }}" style="display:inline-block;background:#2D5BE3;color:#ffffff;text-decoration:none;font-weight:bold;font-size:15px;padding:13px 22px;border-radius:9px">Activer mon compte</a>
+    <p style="font-size:13px;line-height:1.5;color:#7F89A3;margin:24px 0 0">Si vous n'êtes pas à l'origine de cette demande, ignorez cet e-mail.</p>
+  </div>
+</div>
