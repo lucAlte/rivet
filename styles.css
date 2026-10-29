@@ -627,7 +627,7 @@ table.list td .btn + .btn { margin-left: 4px; }
 @media (max-width: 820px) { .sidebar { height: calc(100dvh - 56px); } }
 
 /* Page de connexion : le texte occupe mieux l'espace sur les grands écrans */
-@media (min-width: 1280px) {
+@media (min-width: 1080px) {
   .auth-side { padding: 48px 64px; }
   .auth-pitch h1 { font-size: clamp(40px, 3.4vw, 56px); max-width: 15ch; }
   .pitch-list { max-width: 54ch; gap: 22px; margin-top: 40px; }
