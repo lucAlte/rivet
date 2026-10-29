@@ -616,3 +616,12 @@ table.list td .btn + .btn { margin-left: 4px; }
   .sel { height: 42px; }
   .card { padding: 14px; }
 }
+
+/* Pleine hauteur d'écran : menu latéral et page de connexion jusqu'en bas */
+#root { height: 100%; }
+.shell { height: 100vh; height: 100dvh; }
+.auth { min-height: 100vh; min-height: 100dvh; }
+.auth-side { min-height: 100%; }
+.boot { min-height: 100vh; min-height: 100dvh; }
+@media (max-width: 960px) { .auth-side { min-height: 0; } }
+@media (max-width: 820px) { .sidebar { height: calc(100dvh - 56px); } }
