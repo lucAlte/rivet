@@ -627,7 +627,7 @@ table.list td .btn + .btn { margin-left: 4px; }
 @media (max-width: 820px) { .sidebar { height: calc(100dvh - 56px); } }
 
 /* Page de connexion : le texte occupe mieux l'espace sur les grands écrans */
-@media (min-width: 1080px) {
+@media (min-width: 1280px) {
   .auth-side { padding: 48px 64px; }
   .auth-pitch h1 { font-size: clamp(40px, 3.4vw, 56px); max-width: 15ch; }
   .pitch-list { max-width: 54ch; gap: 22px; margin-top: 40px; }
@@ -643,4 +643,10 @@ table.list td .btn + .btn { margin-left: 4px; }
   .auth-pitch h1 { font-size: 64px; }
   .pitch-list li { font-size: 20px; }
   .auth-card { width: min(520px, 100%); }
+}
+@media (min-width: 2560px) {
+  .auth-side { padding: 88px 100px; }
+  .auth-pitch h1 { font-size: 88px; }
+  .pitch-list li { font-size: 30px; }
+  .auth-card { width: min(650px, 100%); }
 }
