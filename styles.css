@@ -625,3 +625,22 @@ table.list td .btn + .btn { margin-left: 4px; }
 .boot { min-height: 100vh; min-height: 100dvh; }
 @media (max-width: 960px) { .auth-side { min-height: 0; } }
 @media (max-width: 820px) { .sidebar { height: calc(100dvh - 56px); } }
+
+/* Page de connexion : le texte occupe mieux l'espace sur les grands écrans */
+@media (min-width: 1280px) {
+  .auth-side { padding: 48px 64px; }
+  .auth-pitch h1 { font-size: clamp(40px, 3.4vw, 56px); max-width: 15ch; }
+  .pitch-list { max-width: 54ch; gap: 22px; margin-top: 40px; }
+  .pitch-list li { font-size: 18px; }
+  .pitch-list svg { width: 24px; height: 24px; }
+  .trade-chips span { font-size: 14px; padding: 7px 14px; }
+  .brand-row.light .logo { font-size: 24px; }
+  .auth-card { width: min(480px, 100%); padding: 40px; }
+  .auth-card h2 { font-size: 28px; }
+}
+@media (min-width: 1680px) {
+  .auth-side { padding: 64px 88px; }
+  .auth-pitch h1 { font-size: 64px; }
+  .pitch-list li { font-size: 20px; }
+  .auth-card { width: min(520px, 100%); }
+}
