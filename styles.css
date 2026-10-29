@@ -531,3 +531,88 @@ table.list td .btn + .btn { margin-left: 4px; }
   .auth-card { padding: 24px 20px; border-radius: 14px; }
   .tpl, .pop-grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* =====================================================================
+   Responsive ordinateurs et tablettes
+   ===================================================================== */
+.lane { max-height: calc(100dvh - 250px); }
+.auth-foot a { color: var(--ink-2); font-weight: 600; }
+
+/* Grands écrans : la journée passe sur deux colonnes */
+@media (min-width: 1280px) {
+  .page:not(.wide) { max-width: 1180px; }
+  .jobs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start; }
+  .settings-body .panel { max-width: none; }
+}
+@media (min-width: 1680px) {
+  .shell { grid-template-columns: 272px minmax(0, 1fr); }
+  .jobs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .page:not(.wide) { max-width: 1480px; }
+}
+
+/* Tablettes paysage et petits portables */
+@media (min-width: 821px) and (max-width: 1180px) {
+  .shell { grid-template-columns: 224px minmax(0, 1fr); }
+  .page, .page.wide { padding-left: 22px; padding-right: 22px; padding-top: 22px; }
+  .page-head { align-items: flex-start; }
+  .board-bar { flex-direction: column; align-items: stretch; gap: 0; }
+  .toolbar { padding: 10px 0 4px; }
+  .search { flex: 1 1 220px; width: auto; }
+  .toolbar .btn.primary { margin-left: auto; }
+  .drawer { width: min(560px, 88vw); }
+  .acc-layout { grid-template-columns: 220px minmax(0, 1fr); }
+  .lane { flex-basis: 268px; }
+  .cal-layout { grid-template-columns: minmax(0, 1fr); }
+  .undated { flex-direction: row; flex-wrap: wrap; min-height: 0; }
+  .undated h4 { width: 100%; }
+  .undated .evt { width: auto; max-width: 260px; }
+  .org-name { max-width: 26vw; }
+  .auth { grid-template-columns: minmax(320px, 40%) minmax(0, 1fr); }
+  .auth-side { padding: 30px 32px; }
+}
+
+/* Tablettes portrait */
+@media (min-width: 600px) and (max-width: 820px) {
+  .drawer { width: min(620px, 100vw); }
+  .fields { grid-template-columns: 1fr 1fr; }
+  .field-row { border-right: 1px solid var(--line); }
+  .field-row:nth-child(2n) { border-right: 0; }
+  .subs li { grid-template-columns: 120px minmax(0, 1fr) 140px 30px; }
+  .subs li .t-people { display: block; }
+  .acc-row { grid-template-columns: minmax(0, 1fr) 170px 90px; }
+  .acc-row .lvl { display: block; }
+  .invite-form { grid-template-columns: minmax(0, 1fr) 160px; }
+  .invite-form .btn { grid-column: 1 / -1; }
+  .search { flex: 1 1 260px; }
+  .kpis { width: 100%; }
+}
+@media (max-width: 600px) {
+  .drawer { width: 100vw; }
+  .cal-title { min-width: 0; }
+  .day-stats { width: 100%; }
+}
+
+/* Écrans tactiles (tablettes) : cibles plus grandes, rien ne dépend du survol */
+@media (hover: none) and (pointer: coarse) {
+  .tbl th, .tbl td { height: 48px; }
+  .in, .person { height: 47px; }
+  .chk { height: 47px; }
+  .chk input { width: 22px; height: 22px; }
+  .t-status .chip { min-height: 34px; }
+  .btn { height: 44px; }
+  .btn.sm { height: 38px; }
+  .icon-btn { width: 42px; height: 42px; }
+  .icon-btn.xs { width: 36px; height: 36px; }
+  .caret { width: 34px; height: 34px; }
+  .nav-item { padding: 11px 12px; }
+  .step { height: 40px; padding: 0 16px; font-size: 14px; }
+  .open-btn { opacity: 1; padding: 6px 11px; }
+  .cell-link { width: 38px; height: 38px; }
+  .day { min-height: 128px; }
+  .day-add { opacity: .8; width: 30px; height: 30px; }
+  .evt { padding: 6px 8px; font-size: 13px; }
+  .pop-link, .pop-person, .pop-item { padding: 11px 10px; }
+  .seg button { height: 40px; }
+  .sel { height: 42px; }
+  .card { padding: 14px; }
+}

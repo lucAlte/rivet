@@ -191,6 +191,7 @@ const colById = (b, id) => (b ? b.column_defs.find((c) => c.id === id) : null);
 const byPos = (a, z) => (a.position - z.position) || ((a.num || 0) - (z.num || 0));
 const topItems = (b) => st.items.filter((i) => i.board_id === b.id && !i.parent_id).sort(byPos);
 const kids = (it) => st.items.filter((i) => i.parent_id === it.id).sort(byPos);
+const nameColW = () => (window.innerWidth < 600 ? 220 : window.innerWidth < 1100 ? 270 : 340);
 const nounOf = (b) => ({ ...NOUN_GEN, ...((b && b.noun) || {}) });
 const code = (b, it) => `${b.prefix}-${String(it.num || 0).padStart(4, '0')}`;
 const colsOf = (b, type) => b.column_defs.filter((c) => c.type === type);
@@ -270,10 +271,11 @@ async function boot() {
   const params = new URLSearchParams(location.search);
   const inv = params.get('invite');
   const orgParam = params.get('org');
+  st.auth.startSignup = params.get('start') === 'signup';
   if (inv) LS.set('rivet.invite', inv);
   st.auth.inviteToken = inv || LS.get('rivet.invite', null);
   if (orgParam) st.auth.form.slug = slugify(orgParam);
-  if (inv || orgParam) history.replaceState(null, '', location.pathname + location.hash);
+  if (inv || orgParam || st.auth.startSignup) history.replaceState(null, '', location.pathname + location.hash);
 
   api.onAuth((event, session) => {
     if (event === 'PASSWORD_RECOVERY') { st.session = session; st.screen = 'auth'; setStep('reset'); }
@@ -309,7 +311,7 @@ async function afterAuth(targetOrgId) {
   if (!st.session) {
     st.screen = 'auth';
     if (st.auth.inviteToken) { await loadInviteInfo(); setStep('invite'); }
-    else setStep(st.auth.form.slug ? 'instance' : 'instance');
+    else setStep(st.auth.startSignup ? 'signup' : 'instance');
     if (st.auth.form.slug && !st.auth.inviteToken) await lookupInstance(st.auth.form.slug, true);
     return;
   }
@@ -576,7 +578,7 @@ function renderAuth() {
       </div>
       <div class="trade-chips">${Object.values(TRADES).slice(0, 6).map((t) => `<span>${esc(t.label)}</span>`).join('')}</div>
     </aside>
-    <main class="auth-main"><div class="auth-card">${body}</div><p class="auth-foot">Rivet · gestion d'interventions pour artisans et techniciens</p></main>
+    <main class="auth-main"><div class="auth-card">${body}</div><p class="auth-foot">Rivet · gestion d'interventions pour artisans et techniciens · <a href="presentation.html">Découvrir Rivet</a></p></main>
   </div>`;
 }
 
@@ -849,8 +851,9 @@ function renderBoard(b) {
 function renderTable(b, edit) {
   const cols = b.column_defs;
   const noun = nounOf(b);
-  const W = 340 + cols.reduce((s, c) => s + (COL_W[c.type] || 150), 0) + (edit ? 52 : 0);
-  const colgroup = `<colgroup><col style="width:340px">${cols.map((c) => `<col style="width:${COL_W[c.type] || 150}px">`).join('')}${edit ? '<col style="width:52px">' : ''}</colgroup>`;
+  const NW = nameColW();
+  const W = NW + cols.reduce((s, c) => s + (COL_W[c.type] || 150), 0) + (edit ? 52 : 0);
+  const colgroup = `<colgroup><col style="width:${NW}px">${cols.map((c) => `<col style="width:${COL_W[c.type] || 150}px">`).join('')}${edit ? '<col style="width:52px">' : ''}</colgroup>`;
   const head = `<thead><tr><th class="c-name">${esc(noun.cap)}</th>${cols.map((c) => `<th><button class="th-btn" data-a="pop-col" data-col="${c.id}" ${edit ? '' : 'disabled'} title="${esc(c.name)}">${esc(c.name)}</button></th>`).join('')}${edit ? `<th><button class="th-add" data-a="pop-addcol" aria-label="Ajouter une colonne" title="Ajouter une colonne">${ICON.plus}</button></th>` : ''}</tr></thead>`;
   const list = filtered(b);
   const coll = collapsed();
@@ -1713,7 +1716,13 @@ document.addEventListener('drop', (e) => {
   else if (z.dataset.drop === 'undated') setVal(it, z.dataset.col, null);
 });
 let lastW = window.innerWidth;
-window.addEventListener('resize', () => { if (window.innerWidth !== lastW) { lastW = window.innerWidth; if (st.pop) { st.pop = null; renderPop(); } } });
+window.addEventListener('resize', () => {
+  if (window.innerWidth === lastW) return;
+  const crossed = (lastW < 1100) !== (window.innerWidth < 1100) || (lastW < 600) !== (window.innerWidth < 600);
+  lastW = window.innerWidth;
+  if (st.pop) { st.pop = null; renderPop(); }
+  if (crossed && st.screen === 'app') renderSoon();
+});
 
 boot();
 })();
